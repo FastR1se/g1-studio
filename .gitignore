@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.tmp
+*.log
+# свои настройки держи в ~/.config/g1-studio/config.toml, а не в репозитории
+config.toml
