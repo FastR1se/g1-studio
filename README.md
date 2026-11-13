@@ -20,7 +20,7 @@
 Нужно: Ubuntu 22.04 или 24.04, видеокарта NVIDIA (проверено на RTX 4060 Laptop 8 ГБ), conda.
 
 ```bash
-git clone https://github.com/<you>/g1-studio.git && cd g1-studio
+git clone git@github.com:FastR1se/g1-studio.git && cd g1-studio
 
 # 1. Isaac Sim + unitree_sim_isaaclab в окружение conda «unitree_sim» (~40 ГБ, 30–60 мин)
 bash scripts/install_unitree_sim.sh
