@@ -1,0 +1,94 @@
+# G1 Studio — настройки. Можно править руками или в окне «Настройки».
+
+# --- Симулятор ---
+[sim]
+# Что запускать. isaac — Isaac Sim (unitree_sim_isaaclab); bench — лёгкий MuJoCo-стенд для проверки приложения без Isaac [isaac | bench]
+backend = "isaac"
+# Папка unitree_sim_isaaclab
+repo = "~/unitree_ws/unitree_sim_isaaclab"
+# Путь к conda. пусто — найти самому ($CONDA_EXE, PATH, ~/miniconda3)
+conda = ""
+# Окружение conda с Isaac Sim
+conda_env = "unitree_sim"
+# Задача (сцена)
+task = "Isaac-Move-Cylinder-G129-Dex1-Wholebody"
+# Устройство физики. cpu — стабильнее для ходьбы (рендер всё равно на GPU); cuda — быстрее физика, но больше VRAM [cpu | cuda]
+device = "cpu"
+# Тип робота
+robot_type = "g129"
+# Доп. аргументы sim_main.py
+extra_args = "--enable_dex1_dds"
+# Без окна Isaac Sim. экономит видеопамять; картинка всё равно идёт в G1 Studio
+headless = false
+# Мяч в сцене. работает, если мяч добавлен во вкладке «Сцена»
+ball = true
+# Позиция мяча x,y (м). робот стартует в (-3.9, -2.818) лицом по +x
+ball_pos = "-2.7,-2.0"
+# Предметы в сцене. работает, если предметы подключены во вкладке «Сцена»
+objects = true
+# Сколько ждать остановки сима, с
+stop_timeout = 20.0
+
+# --- Связь (DDS) ---
+[dds]
+# DDS domain. в симе Unitree — 1, на реальном роботе — 0
+domain = 1
+# Сетевой интерфейс DDS. пусто — по умолчанию (для сима так и надо)
+interface = ""
+# Порядок кватерниона IMU. сим Unitree — xyzw, реальный G1 — wxyz [xyzw | wxyz]
+quat_order = "xyzw"
+
+# --- Камера ---
+[camera]
+# Камера включена
+enabled = true
+# Адрес камеры (ZMQ)
+host = "127.0.0.1"
+# Порт камеры
+port = 55555
+
+# --- YOLO ---
+[yolo]
+# YOLO включён
+enabled = true
+# Модель ONNX. пусто — models/yolo26s.onnx (или yolo26n.onnx)
+model = ""
+# Порог уверенности
+conf = 0.35
+# Потоков CPU для YOLO. остальные ядра остаются симу
+threads = 4
+
+# --- Qwen ---
+[qwen]
+# Где работает Qwen. ollama — локально; api — OpenAI-совместимый сервер [ollama | api]
+backend = "ollama"
+# Адрес сервера. Ollama: http://localhost:11434; DashScope: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
+url = "http://localhost:11434"
+# Модель. Ollama: qwen3:1.7b / qwen3:4b; API: qwen-plus
+model = "qwen3:1.7b"
+# Ключ API. лучше задать переменной QWEN_API_KEY — тогда он не хранится в файле
+api_key = ""
+# Доп. поля запроса (JSON). для Qwen3 на DashScope: {"enable_thinking": false}
+extra_body = ""
+# Ollama на видеокарте. по умолчанию CPU: видеопамять нужна Isaac Sim
+gpu = false
+# Таймаут ответа, с
+timeout = 60.0
+
+# --- Робот ---
+[robot]
+# Скорость сима (× реального времени). если сим идёт медленнее, шаги «на N метров» короче; приложение подскажет значение
+sim_speed = 1.0
+# Ручное: скорость вперёд, м/с
+manual_speed = 0.5
+# Ручное: скорость вбок, м/с
+manual_strafe = 0.3
+# Ручное: поворот, °/с
+manual_turn = 45.0
+
+# --- Интерфейс ---
+[ui]
+# Частота обновления камеры в окне
+camera_fps = 15
+# Управление с клавиатуры (WASD, Q/E)
+keyboard = true
